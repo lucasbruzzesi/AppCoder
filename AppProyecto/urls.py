@@ -3,9 +3,9 @@ from .views import *
 
 urlpatterns = [
 
-    path('', inicioapp, name = 'InicioApp'),
-    path('Cliente/', Cliente1, name = 'Cliente'),
-    path('Carrito/', carrito, name = 'Carrito'),
-    path('Productos', productos, name = 'Productos'),
-
+    path('', inicio, name = 'InicioApp'),
+    path('clientes/', clientes, name = 'Cliente'),
+    path('ventas/', ventas, name = 'Ventas'),
+    path('productos/', productos, name = 'Productos'),
+    path("buscar/", buscar, name="buscar"),
 ]

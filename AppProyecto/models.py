@@ -15,11 +15,12 @@ class Cliente(models.Model):
     def __str__(self):
         return f'{self.nombre} {self.apellido}' 
 
-class Carrito(models.Model):
+class Ventas(models.Model):
 
-    item = models.CharField(max_length=50)
-    precio = models.CharField(max_length=50)
-    cantidad = models.CharField(max_length=50)
+    nombre_cliente = models.CharField(max_length=50)
+    fecha = models.CharField(max_length=10)
+    productos = models.CharField(max_length=50)
+    precio = models.CharField(max_length=20)
 
 class Productos(models.Model):
 

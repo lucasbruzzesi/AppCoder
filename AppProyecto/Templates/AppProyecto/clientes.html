@@ -1,0 +1,96 @@
+{% extends "AppProyecto/Principal.html" %}
+
+{% load static %}
+
+{% block titulo %}
+
+    <style>
+    table , th , td {padding: 5px;}
+    table {border-spacing: 15px;}
+    #t01 {background-color: rgb(236, 236, 236);}
+    #t02 th {background-color: rgb(211, 238, 255);}
+    </style>
+
+    <h1>Listado de Clientes</h1>
+
+{% endblock %}
+
+{% block contenido_que_cambia %}
+
+<h1> Nuevo Cliente</h1>
+<p style="padding: 5px"></p>
+
+<form action="" method="post">
+    {% csrf_token %}
+
+    <table id="t01">
+    {{ form.as_table }}
+    </table>
+
+    <input type="submit" value="Agregar" onclick="alert('Cliente Agregado')" class="btn btn-success">         
+</form>
+
+
+<p style="padding: 10px"></p>
+
+
+<h1><caption>Lista de clientes</caption></h1>
+
+<table class='table table-striped', style="width:100%", id="t02">
+    <thead>
+        <tr>
+            <th>Nombre</th>
+            <th>Apellido</th>
+            <th>Pais</th>
+            <th>Ciudad</th>
+            <th>Direccion</th>
+            <th>Mail</th>
+            <th>Telefono</th>
+            <th>Tipo Tarjeta</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for cliente in clientes %}
+        <tr>
+            
+            <td>
+                {{ cliente.nombre}}
+            </td>
+            <td>
+                {{ cliente.apellido}}
+            </td>
+            <td>
+                {{ cliente.pais}}
+            </td>
+            <td>
+                {{ cliente.ciudad}}
+            </td>
+            <td>
+                {{ cliente.direccion}}
+            </td>
+            <td>
+                {{ cliente.mail}}
+            </td>
+            <td>
+                {{ cliente.telefono}}
+            </td>
+            <td>
+                {{ cliente.tipotarjeta}}
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<h3>{{ mensaje }}</h3>
+<p style="padding: 1px"></p>
+<form action="{% url 'buscar' %}" method="GET"> 
+
+    <input type="search" class="form-control" name="cliente" id="cliente" placeholder="Ingrese nombre de cliente">
+    <p style="padding: 3px"></p>
+    <input type="submit" class="btn btn-primary btn-xs" value="Buscar cliente">
+
+
+</form>
+
+{% endblock %}

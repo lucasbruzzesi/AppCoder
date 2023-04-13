@@ -1,0 +1,28 @@
+{% extends "AppProyecto/inicio.html" %}
+
+{% load static %}
+
+{% block titulo %}
+<h1>Resultado de la busqueda de cliente</h1>
+{% endblock %}
+
+{% block contenido_que_cambia %}
+
+{% if clientes %}
+
+<h2>Cliente encontrado</h2>
+{% for cliente in clientes %}
+
+<h3>{{ cliente.nombre }}</h3>
+
+{% endfor %}
+
+{% else %}
+
+<h2>No se encontro el cliente</h2>
+
+{% endif %}
+
+
+
+{% endblock %}

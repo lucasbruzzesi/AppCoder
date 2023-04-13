@@ -1,0 +1,68 @@
+{% extends "AppProyecto/Principal.html" %}
+
+{% load static %}
+
+{% block titulo %}
+
+<style>
+    table , th , td {padding: 5px;}
+    table {border-spacing: 15px;}
+    #t01 {background-color: rgb(236, 236, 236);}
+    #t02 th {background-color: rgb(211, 238, 255);}
+    </style>
+
+<h1>Listado de ventas</h1>
+
+{% endblock %}
+
+{% block contenido_que_cambia %}
+
+<h1>Venta</h1>
+
+<p style="padding: 5px"></p>
+
+<form action="" method="post">
+    {% csrf_token %}
+
+    <table id="t01">
+    {{ form.as_table }}
+    </table>
+
+    <input type="submit" value="Agregar venta" onclick="alert('Venta Agregado')" class="btn btn-success">         
+</form>
+<p style="padding: 10px"></p>
+
+
+<h1><caption>Lista de ventas</caption></h1>
+
+<table class='table table-striped', style="width:100%", id="t02">
+    <thead>
+        <tr>
+            <th>Nombre Cliente</th>
+            <th>Fecha</th>
+            <th>Productos</th>
+            <th>Precio</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for venta in ventas %}
+        <tr>
+            
+            <td>
+                {{ venta.nombre_cliente}}
+            </td>
+            <td>
+                {{ venta.fecha}}
+            </td>
+            <td>
+                {{ venta.productos}}
+            </td>
+            <td>
+                {{ venta.precio}}
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% endblock %}

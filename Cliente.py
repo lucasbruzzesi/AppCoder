@@ -11,6 +11,8 @@ class Cliente:
         self.telefono = telefono
         self.__tipotarjeta = tipotarjeta
 
+    datos_ingresados = {'nombre':'','apellido':'','pais':'','ciudad':'','direccion':'','mail':'','telefono':'','tipotarjeta':''}
+
     
     def get_tipotarjeta(self):
         return self.__tipotarjeta

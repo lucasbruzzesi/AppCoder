@@ -1,0 +1,68 @@
+{% extends "AppProyecto/Principal.html" %}
+
+{% load static %}
+
+{% block titulo %}
+
+    <style>
+    table , th , td {padding: 5px;}
+    table {border-spacing: 15px;}
+    #t01 {background-color: rgb(236, 236, 236);}
+    #t02 th {background-color: rgb(211, 238, 255);}
+    </style>
+
+<h1>Listado de Productos</h1>
+
+{% endblock %}
+
+{% block contenido_que_cambia %}
+
+<h1>Nuevo Producto</h1>
+
+<p style="padding: 5px"></p>
+
+<form action="" method="post">
+    {% csrf_token %}
+
+    <table id="t01">
+    {{ form.as_table }}
+    </table>
+
+    <input type="submit" value="Agregar producto" onclick="alert('Producto Agregado')" class="btn btn-success">         
+</form>
+<p style="padding: 10px"></p>
+
+
+<h1><caption>Lista de productos</caption></h1>
+
+<table class='table table-striped', style="width:100%", id="t02">
+    <thead>
+        <tr>
+            <th>Item</th>
+            <th>Descripcion</th>
+            <th>Cantidad</th>
+            <th>Precio</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for producto in productos %}
+        <tr>
+            
+            <td>
+                {{ producto.item}}
+            </td>
+            <td>
+                {{ producto.descripcion}}
+            </td>
+            <td>
+                {{ producto.cantidad}}
+            </td>
+            <td>
+                {{ producto.precio}}
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% endblock %}
