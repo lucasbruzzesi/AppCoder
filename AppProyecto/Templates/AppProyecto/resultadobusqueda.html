@@ -1,25 +1,39 @@
 {% extends "AppProyecto/inicio.html" %}
-
 {% load static %}
-
 {% block titulo %}
+
+<style>
+
+    .center {margin: auto;}
+
+</style>
+
 <h1>Resultado de la busqueda de cliente</h1>
+
 {% endblock %}
 
 {% block contenido_que_cambia %}
 
 {% if clientes %}
 
+<div class="shadow p-4 mb-5 bg-body rounded center" style="width:50%">
 <h2>Cliente encontrado</h2>
+<p style="padding: 10px"></p>
+<table class='table table-striped'>
+    <tbody>
 {% for cliente in clientes %}
-
+    </tbody>
 <h3>{{ cliente.nombre }}</h3>
 
 {% endfor %}
+</table>
+</div>
 
 {% else %}
 
+<div class="shadow p-4 mb-5 bg-body rounded center" style="width:50%">
 <h2>No se encontro el cliente</h2>
+</div>
 
 {% endif %}
 

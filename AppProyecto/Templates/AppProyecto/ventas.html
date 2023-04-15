@@ -1,15 +1,17 @@
 {% extends "AppProyecto/Principal.html" %}
-
 {% load static %}
-
 {% block titulo %}
 
 <style>
-    table , th , td {padding: 5px;}
-    table {border-spacing: 15px;}
+
     #t01 {background-color: rgb(236, 236, 236);}
+
     #t02 th {background-color: rgb(211, 238, 255);}
-    </style>
+         tr:hover {background-color: #ddd;}
+         
+    .center {margin: auto;}
+
+</style>
 
 <h1>Listado de ventas</h1>
 
@@ -17,7 +19,8 @@
 
 {% block contenido_que_cambia %}
 
-<h1>Venta</h1>
+<div class="shadow p-4 mb-5 bg-body rounded center" style="width:50%">
+<h1>Registrar venta</h1>
 
 <p style="padding: 5px"></p>
 
@@ -25,13 +28,14 @@
     {% csrf_token %}
 
     <table id="t01">
-    {{ form.as_table }}
+    {{ form.as_p }}
     </table>
 
     <input type="submit" value="Agregar venta" onclick="alert('Venta Agregado')" class="btn btn-success">         
 </form>
-<p style="padding: 10px"></p>
+</div>
 
+<p style="padding: 10px"></p>
 
 <h1><caption>Lista de ventas</caption></h1>
 

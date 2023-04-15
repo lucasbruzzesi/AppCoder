@@ -63,6 +63,7 @@ def productos(request):
 def buscar(request):
     
     nombre= request.GET["cliente"]
+    form = ClienteForm(request.GET)
     if nombre!="":
-        clientes= Cliente.objects.filter(nombre__icontains=nombre)#buscar otros filtros en la documentacion de django
-        return render(request, "AppProyecto/resultadobusqueda.html", {"clientes": clientes})
+        clientes= Cliente.objects.filter(nombre__contains=nombre)
+        return render(request, "AppProyecto/resultadobusqueda.html", {"clientes": clientes, "form" : form})
