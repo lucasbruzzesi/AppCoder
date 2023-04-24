@@ -2,42 +2,30 @@
 {% load static %}
 {% block titulo %}
 
+<!-- Estilos HTML Tablas -->
+
 <style>
     
-    #t01 {background-color: rgb(236, 236, 236);}
-    
-    #t02 th {background-color: rgb(211, 238, 255);} 
-         tr:hover {background-color: #ddd;}
+    #t01 th {background-color: rgb(0, 47, 77);} 
 
     .center {margin: auto;}
     
 </style>
 
-<h1>Listado de Clientes</h1>
+<h1>Bike Shop</h1>
 
 {% endblock %}
 
 {% block contenido_que_cambia %}
 
+<!-- Formulario de clientes -->
 
-<div class="shadow p-4 mb-5 bg-body rounded center" style="width:50%">
-<h1> Nuevo Cliente</h1>
-<p style="padding: 5px"></p>
-
-<form action="" method="post">
-
-    {% csrf_token %}
-    {{ form.as_p }}
-
-<input type="submit" value="Agregar" onclick="alert('Cliente Agregado')" class="btn btn-success">         
-</form>
-</div>
-
-<p style="padding: 10px"></p>
+<div style="background-color: rgb(203, 227, 241);" class="shadow p-4 mb-5 rounded center" style="width:100%">
 
 <h1><caption>Lista de clientes</caption></h1>
+<br>
 
-<table class='table table-striped', style="width:100%", id="t02">
+<table class='table table-dark table-striped table-hover table-borderless', style="width:100%", id="t01">
     <thead>
         <tr>
             <th>Nombre</th>
@@ -47,11 +35,12 @@
             <th>Direccion</th>
             <th>Mail</th>
             <th>Telefono</th>
-            <th>Tipo Tarjeta</th>
+            <th>Metodo de pago</th>
+            <th></th>
         </tr>
     </thead>
     <tbody>
-        {% for cliente in clientes %}
+        {% for cliente in cliente %}
         <tr>
             <td>
                 {{ cliente.nombre}}
@@ -75,21 +64,17 @@
                 {{ cliente.telefono}}
             </td>
             <td>
-                {{ cliente.tipotarjeta}}
+                {{ cliente.metodopago}}
+            </td>
+            <td>
+                <a class="btn btn-sm btn-danger bi bi-trash-fill" href="{% url 'eliminarcliente'  cliente.id  %}"></a>
+                <a class="btn btn-sm btn-warning bi-pencil-fill" href="{% url 'editarcliente'  cliente.id  %}"></a>
             </td>
         </tr>
         {% endfor %}
     </tbody>
 </table>
-
-<h3>{{ mensaje }}</h3>
-<p style="padding: 1px"></p>
-<form action="{% url 'buscar' %}" method="GET"> 
-
-    <input type="search" class="form-control" name="cliente" id="cliente" placeholder="Ingrese nombre de cliente">
-    <p style="padding: 3px"></p>
-    <input type="submit" class="btn btn-primary btn-xs" value="Buscar cliente">
-
-</form>
+</div>
+<br>
 
 {% endblock %}

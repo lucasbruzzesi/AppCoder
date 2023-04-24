@@ -1,0 +1,40 @@
+{% extends "AppProyecto/Principal.html" %}
+
+{% load static %}
+
+{% block titulo %}
+
+<style>
+
+    .center {margin: auto;}
+
+</style>
+
+<h1 class="mb-5">Bike Shop</h1>
+
+{% endblock %}
+
+{% block contenido_que_cambia %}
+
+<div class="shadow p-4 mb-5 bg-body rounded center" style="width:50%">
+
+<h1>Inicio de sesion</h1>
+<br>
+<h3>{{ mensaje }}</h3>
+
+<form action="{% url 'login' %}" method="POST"> {% csrf_token %}
+
+<table>
+
+    {{ form.as_p }}
+    
+</table>
+
+<button type="submit" onclick="alert('Ha iniciado sesion correctamente')" class="btn btn-success">
+    <i class="bi bi-check-circle me-2"></i> Confirmar
+
+</form>
+</div>
+
+
+{% endblock %}

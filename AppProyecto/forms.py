@@ -5,7 +5,8 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 
 
-TIPOTARJETA = [('Visa', ' Visa'), ('Mastercard', ' Mastercard'), ('Otros', ' Otros')]
+METODOPAGO = [('Credito', ' Credito'), ('Debito', ' Debito'), ('Transferencia Bancaria', ' Transferencia Bancaria'), ('Mercado Pago', ' Mercado Pago')]
+
 
 class ClienteForm(forms.Form):
     nombre = forms.CharField(widget=forms.TextInput(attrs={'class':'form-control', 'placeholder':'Ingresar Nombre'}), max_length=20, label="")
@@ -15,7 +16,7 @@ class ClienteForm(forms.Form):
     direccion = forms.CharField(widget=forms.TextInput(attrs={'class':'form-control', 'placeholder':'Ingresar Direccion'}), max_length=80, label="")
     mail = forms.EmailField(widget=forms.EmailInput(attrs={'class':'form-control', 'placeholder':'Ingresar Mail'}), label="")
     telefono = forms.CharField(widget=forms.TextInput(attrs={'class':'form-control', 'placeholder':'Ingresar Telefono'}), max_length=20, label="")
-    tipo_tarjeta = forms.ChoiceField(widget=forms.RadioSelect, choices=TIPOTARJETA, label="Seleccionar tipo de tarjeta")
+    metodo_de_pago = forms.ChoiceField(widget=forms.RadioSelect, choices=METODOPAGO, label="Seleccionar forma de pago")
     
 class ProductosForm(forms.Form):
     item = forms.CharField(widget=forms.TextInput(attrs={'class':'form-control', 'placeholder':'Ingresar Item'}), max_length=50, label="")
@@ -25,6 +26,17 @@ class ProductosForm(forms.Form):
 
 class VentasForm(forms.Form):
     nombre_cliente = forms.CharField(widget=forms.TextInput(attrs={'class':'form-control', 'placeholder':'Ingresar Nombre del Cliente'}), max_length=50, label="")
-    fecha = forms.DateField(widget=NumberInput(attrs={'type':'date', 'class':'form-control'}), label="Fecha")
+    fecha = forms.DateField(widget=NumberInput(attrs={'type':'date', 'class':'form-control'}), label="Seleccionar Fecha")
     productos = forms.CharField(widget=forms.TextInput(attrs={'class':'form-control', 'placeholder':'Ingresar Productos'}), max_length=50, label="")
     precio = forms.CharField(widget=forms.TextInput(attrs={'class':'form-control', 'placeholder':'Ingresar Precio'}), max_length=20, label="")
+
+class RegistroUsuarioForm(UserCreationForm):
+    username = forms.CharField(widget=forms.TextInput(attrs={'class':'form-control', 'placeholder':'Ingresar Nombre de Usuario'}), max_length=20, label="")
+    mail = forms.EmailField(widget=forms.EmailInput(attrs={'class':'form-control', 'placeholder':'Ingresar Mail'}), label='')
+    password1 = forms.CharField(widget=forms.PasswordInput(attrs={'class':'form-control', 'placeholder':'Ingresar Contraseña'}), label='')
+    password2 = forms.CharField(widget=forms.PasswordInput(attrs={'class':'form-control', 'placeholder':'Confirmar Contraseña'}), label='')
+
+    class Meta:
+        model=User
+        fields=["username", "mail", "password1", "password2"]
+        help_texts = {k:"" for k in fields}

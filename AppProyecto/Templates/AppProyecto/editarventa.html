@@ -1,0 +1,39 @@
+{% extends "AppProyecto/Principal.html" %}
+
+{% load static %}
+
+{% block titulo %}
+
+<style>
+
+    .center {margin: auto;}
+
+</style>
+
+<h1 class="mb-5">Venta: {{ venta }} </h1>
+
+{% endblock %}
+
+{% block contenido_que_cambia %}
+
+<div class="shadow p-4 mb-5 bg-body rounded center" style="width:50%">
+
+<h1> Editando Venta</h1>
+<br>
+
+<form action="{% url 'editarventa' venta.id %}" method="POST"> {% csrf_token %}
+
+<table>
+
+    {{ form.as_p }}
+
+</table>
+
+<button type="submit" onclick="alert('La venta ha sido modificada')" class="btn btn-info">
+    <i class="bi bi-check-circle me-2"></i> Guardar Cambios
+
+</form>
+</div>
+
+
+{% endblock %}

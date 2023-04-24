@@ -14,25 +14,39 @@
 
 {% block contenido_que_cambia %}
 
+<!-- DIV Cliente Encontrado -->
+
 {% if clientes %}
 
 <div class="shadow p-4 mb-5 bg-body rounded center" style="width:50%">
+
 <h2>Cliente encontrado</h2>
-<p style="padding: 10px"></p>
-<table class='table table-striped'>
+
+<br>
     <tbody>
 {% for cliente in clientes %}
     </tbody>
-<h3>{{ cliente.nombre }}</h3>
 
+<h3>{{ cliente.nombre }} {{ cliente.apellido}}</h3>
 {% endfor %}
-</table>
 </div>
 
-{% else %}
+<!-- DIV Cliente Vacio -->
+
+{% elif mensaje %}
 
 <div class="shadow p-4 mb-5 bg-body rounded center" style="width:50%">
+
+<h2>{{ mensaje }}</h2>
+
+<!-- DIV Cliente no Encontrado -->
+
+{% else %} 
+
+<div class="shadow p-4 mb-5 bg-body rounded center" style="width:50%">
+
 <h2>No se encontro el cliente</h2>
+
 </div>
 
 {% endif %}

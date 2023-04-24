@@ -1,0 +1,39 @@
+{% extends "AppProyecto/Principal.html" %}
+
+{% load static %}
+
+{% block titulo %}
+
+<style>
+
+    .center {margin: auto;}
+
+</style>
+
+<h1 class="mb-5">Cliente: {{ cliente }} </h1>
+
+{% endblock %}
+
+{% block contenido_que_cambia %}
+
+<div class="shadow p-4 mb-5 bg-body rounded center" style="width:50%">
+
+<h1> Editando Cliente</h1>
+<br>
+
+<form action="{% url 'editarcliente' cliente.id %}" method="POST"> {% csrf_token %}
+
+<table>
+
+    {{ form.as_p }}
+
+</table>
+
+<button type="submit" onclick="alert('El cliente ha sido modificado')" class="btn btn-info">
+    <i class="bi bi-check-circle me-2"></i> Guardar Cambios
+
+</form>
+</div>
+
+
+{% endblock %}
