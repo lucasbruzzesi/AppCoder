@@ -1,13 +1,14 @@
 from django.shortcuts import render
 from .models import *
 from .forms import *
+from AppPerfiles.views import obtener_avatar
 
 from django.contrib.auth.decorators import login_required
 
 
 
 def inicio(request):
-    return render(request, 'AppProyecto/inicio.html')
+    return render(request, 'AppProyecto/inicio.html', {'avatar' : obtener_avatar(request)})
 
 
 
@@ -32,7 +33,7 @@ def clientes(request):
     else:
         form = ClienteForm()
 
-    return render(request, 'AppProyecto/agregar_nuevo_cliente.html', {'form' : form})
+    return render(request, 'AppProyecto/agregar_nuevo_cliente.html', {'form' : form, 'avatar' : obtener_avatar(request)})
 
 @login_required
 def editarclientes(request, id):
@@ -52,7 +53,7 @@ def editarclientes(request, id):
             cliente.save()
             clientes = Cliente.objects.all()
             form = ClienteForm()
-            return render(request, 'AppProyecto/clientes.html', {'cliente': clientes, 'Mensaje': 'El cliente ha sido editado', 'form': form})
+            return render(request, 'AppProyecto/clientes.html', {'cliente': clientes, 'Mensaje': 'El cliente ha sido editado', 'form': form, 'avatar' : obtener_avatar(request)})
         pass
     else:
         formulario = ClienteForm(initial=
@@ -64,7 +65,7 @@ def editarclientes(request, id):
             'mail': cliente.mail,
             'telefono': cliente.telefono,
             'metodo_de_pago': cliente.metodopago})
-        return render(request, 'AppProyecto/editarcliente.html', {'cliente': cliente, 'form': formulario})
+        return render(request, 'AppProyecto/editarcliente.html', {'cliente': cliente, 'form': formulario, 'avatar' : obtener_avatar(request)})
 
 @login_required
 def eliminarcliente(request, id):
@@ -72,12 +73,12 @@ def eliminarcliente(request, id):
     cliente.delete()
     clientes = Cliente.objects.all()
     form = ClienteForm()
-    return render(request, 'AppProyecto/clientes.html', {'cliente': clientes, 'form': form})
+    return render(request, 'AppProyecto/clientes.html', {'cliente': clientes, 'form': form, 'avatar' : obtener_avatar(request)})
 
 @login_required
 def listaclientes(request):
     clientes = Cliente.objects.all()
-    return render(request, 'AppProyecto/clientes.html', {'cliente': clientes})
+    return render(request, 'AppProyecto/clientes.html', {'cliente': clientes, 'avatar' : obtener_avatar(request)})
 
 
 
@@ -98,7 +99,7 @@ def ventas(request):
     else:
         form = VentasForm()
 
-    return render(request, 'AppProyecto/agregar_nueva_venta.html', {"form": form})
+    return render(request, 'AppProyecto/agregar_nueva_venta.html', {"form": form, 'avatar' : obtener_avatar(request)})
 
 @login_required
 def editarventas(request, id):
@@ -114,7 +115,7 @@ def editarventas(request, id):
             venta.save()
             ventas = Ventas.objects.all()
             form = VentasForm()
-            return render(request, 'AppProyecto/ventas.html', {'ventas': ventas, 'Mensaje': 'La venta ha sido editada', 'form': form})
+            return render(request, 'AppProyecto/ventas.html', {'ventas': ventas, 'Mensaje': 'La venta ha sido editada', 'form': form, 'avatar' : obtener_avatar(request)})
         pass
     else:
         formulario = VentasForm(initial=
@@ -122,7 +123,7 @@ def editarventas(request, id):
             'fecha': venta.fecha, 
             'productos': venta.productos, 
             'precio': venta.precio})
-        return render(request, 'AppProyecto/editarventa.html', {'venta': venta, 'form': formulario})
+        return render(request, 'AppProyecto/editarventa.html', {'venta': venta, 'form': formulario, 'avatar' : obtener_avatar(request)})
 
 @login_required
 def eliminarventa(request, id):
@@ -130,12 +131,12 @@ def eliminarventa(request, id):
     venta.delete()
     ventas = Ventas.objects.all()
     form = VentasForm()
-    return render(request, 'AppProyecto/ventas.html', {'venta': ventas, 'form': form})
+    return render(request, 'AppProyecto/ventas.html', {'venta': ventas, 'form': form, 'avatar' : obtener_avatar(request)})
 
 @login_required
 def listaventas(request):
     ventas = Ventas.objects.all()
-    return render(request, 'AppProyecto/ventas.html', {'ventas': ventas})
+    return render(request, 'AppProyecto/ventas.html', {'ventas': ventas, 'avatar' : obtener_avatar(request)})
 
 
 
@@ -156,7 +157,7 @@ def productos(request):
     else:
         form = ProductosForm()
 
-    return render(request, 'AppProyecto/agregar_nuevo_producto.html', {"form" : form})
+    return render(request, 'AppProyecto/agregar_nuevo_producto.html', {"form" : form, 'avatar' : obtener_avatar(request)})
 
 @login_required
 def editarproductos(request, id):
@@ -172,7 +173,7 @@ def editarproductos(request, id):
             productos.save()
             productos = Productos.objects.all()
             form = ProductosForm()
-            return render(request, 'AppProyecto/productos.html', {'productos': productos, 'Mensaje': 'El producto ha sido editado', 'form': form})
+            return render(request, 'AppProyecto/productos.html', {'productos': productos, 'Mensaje': 'El producto ha sido editado', 'form': form, 'avatar' : obtener_avatar(request)})
         pass
     else:
         formulario = ProductosForm(initial=
@@ -180,7 +181,7 @@ def editarproductos(request, id):
             'descripcion': productos.descripcion, 
             'precio': productos.precio, 
             'cantidad': productos.cantidad,})
-        return render(request, 'AppProyecto/editarproducto.html', {'producto': productos, 'form': formulario})
+        return render(request, 'AppProyecto/editarproducto.html', {'producto': productos, 'form': formulario, 'avatar' : obtener_avatar(request)})
 
 @login_required
 def eliminarproducto(request, id):
@@ -188,12 +189,12 @@ def eliminarproducto(request, id):
     producto.delete()
     productos = Productos.objects.all()
     form = ClienteForm()
-    return render(request, 'AppProyecto/productos.html', {'productos': productos, 'mensaje': 'El producto ha sido borrado', 'form': form})
+    return render(request, 'AppProyecto/productos.html', {'productos': productos, 'mensaje': 'El producto ha sido borrado', 'form': form, 'avatar' : obtener_avatar(request)})
 
 @login_required
 def listaproductos(request):
     productos = Productos.objects.all()
-    return render(request, 'AppProyecto/productos.html', {'productos': productos})
+    return render(request, 'AppProyecto/productos.html', {'productos': productos, 'avatar' : obtener_avatar(request)})
 
 
 
@@ -206,13 +207,13 @@ def buscar(request):
     form = ClienteForm(request.GET)
     if nombre!="":
         clientes = Cliente.objects.filter(nombre__contains=nombre)
-        return render(request, "AppProyecto/resultadobusqueda.html", {"clientes": clientes, "form" : form})
+        return render(request, "AppProyecto/resultadobusqueda.html", {"clientes": clientes, "form" : form, 'avatar' : obtener_avatar(request)})
     elif nombre=='':
-        return render(request, "AppProyecto/resultadobusqueda.html", {"mensaje": 'Porfavor ingrese el nombre de un cliente'})
+        return render(request, "AppProyecto/resultadobusqueda.html", {"mensaje": 'Porfavor ingrese el nombre de un cliente', 'avatar' : obtener_avatar(request)})
 
 
 
 """ Funciones 'Acerca de mi' """
 
 def about(request):
-    return render(request, 'AppProyecto/about.html')
+    return render(request, 'AppProyecto/about.html', {'avatar' : obtener_avatar(request)})

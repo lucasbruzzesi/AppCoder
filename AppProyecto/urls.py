@@ -27,10 +27,10 @@ urlpatterns = [
     path('buscar/', buscar, name="Buscar"),
     path('about/', about, name ='About'),
     
-    path("accounts/login/", registrologin, name="login"),
-    path('accounts/logout/', LogoutView.as_view(), name='logout'),
-    path("accounts/signup/", registro, name="registro"),
-    path("accounts/profile/", perfilusuario, name="perfilusuario"),
-    path('accounts/editprofile/', editarPerfil, name='editarPerfil'),
-    path('accounts/add_avatar/', agregarAvatar, name='agregarAvatar')
+    path("login/", registro_login, name="login"),
+    path('logout/', LogoutView.as_view(), name='logout'),
+    path("signup/", registro, name="registro"),
+    path("profile/", perfil_usuario, name="perfilusuario"),
+    path('editar_perfil/', editar_perfil, name='editarPerfil'),
+    path('agregar_avatar/', agregar_avatar, name='agregarAvatar')
 ]

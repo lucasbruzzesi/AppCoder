@@ -1,9 +1,6 @@
 from django import forms
 from django.forms.widgets import NumberInput
 
-from django.contrib.auth.forms import UserCreationForm
-from django.contrib.auth.models import User
-
 
 METODOPAGO = [('Credito', ' Credito'), ('Debito', ' Debito'), ('Transferencia Bancaria', ' Transferencia Bancaria'), ('Mercado Pago', ' Mercado Pago')]
 
@@ -29,14 +26,3 @@ class VentasForm(forms.Form):
     fecha = forms.DateField(widget=NumberInput(attrs={'type':'date', 'class':'form-control'}), label="Seleccionar Fecha")
     productos = forms.CharField(widget=forms.TextInput(attrs={'class':'form-control', 'placeholder':'Ingresar Productos'}), max_length=50, label="")
     precio = forms.CharField(widget=forms.TextInput(attrs={'class':'form-control', 'placeholder':'Ingresar Precio'}), max_length=20, label="")
-
-class RegistroUsuarioForm(UserCreationForm):
-    username = forms.CharField(widget=forms.TextInput(attrs={'class':'form-control', 'placeholder':'Ingresar Nombre de Usuario'}), max_length=20, label="")
-    mail = forms.EmailField(widget=forms.EmailInput(attrs={'class':'form-control', 'placeholder':'Ingresar Mail'}), label='')
-    password1 = forms.CharField(widget=forms.PasswordInput(attrs={'class':'form-control', 'placeholder':'Ingresar Contraseña'}), label='')
-    password2 = forms.CharField(widget=forms.PasswordInput(attrs={'class':'form-control', 'placeholder':'Confirmar Contraseña'}), label='')
-
-    class Meta:
-        model=User
-        fields=["username", "mail", "password1", "password2"]
-        help_texts = {k:"" for k in fields}
