@@ -60,10 +60,12 @@
                     <a class="btn btn-primary" href="{% url 'login' %}">Iniciar Sesion</a>
                     <a class="btn btn-danger" href="{% url 'registro' %}">Registrarse</a>
                     {% endif %}
+                    {% if user.is_authenticated %}
                 <form class="d-flex" action="{% url 'Buscar' %}" method="GET">
                     <input class="form-control me-2" name="cliente" type="search" placeholder="Nombre de Cliente">
                     <button class="btn btn-success col-2" type="submit">
                         <i class="bi bi-search me-5"></i>
+                    {% endif %}
                     </button>
                 </form>
             </div>

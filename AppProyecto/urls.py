@@ -26,6 +26,7 @@ urlpatterns = [
 
     path('buscar/', buscar, name="Buscar"),
     path('about/', about, name ='About'),
+    path('pages/', listacompleta, name ='Pages'),
     
     path("login/", registro_login, name="login"),
     path('logout/', LogoutView.as_view(), name='logout'),

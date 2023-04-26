@@ -6,25 +6,38 @@
 
     .center {margin: auto;}
 
+    .card-body {display: flex;
+        flex-direction: column;
+        justify-content: center;}
+    .card-body p {text-indent: -20px;}
+
 </style>
 
-<h1>Acerca de Bike Shop</h1>
+<h1>Indice</h1>
 
 {% endblock %}
 
 {% block contenido_que_cambia %}
 
-<div class="shadow p-4 mb-5 bg-body rounded center" style="width:50%">
+{% for cliente in clientes %}
+<div class="card">
+    <div class="card-header">
+      Detalles de cliente
+    </div>
+    <div class="card-body">
+      <h5 class="card-title">{{ cliente }}</h5>
+      <p class="card-text">
+      <ul>
 
-<h2>Creador: Lucas Bruzzesi</h2>
-<br>
-<h4>
-    Proyecto web orientado a e-commerce, creado usando python y el framework django, frontend basado en bootstrap.
-    <br>
-    <br>
-    Este mismo tiene como fines almacenar listados de clientes, productos y ventas. A futuro tambien se podria complementar con un control de stock y trackeo de ventas.
-</h4>
+      <p><i class="bi bi-geo-alt me-2"></i>{{ cliente.pais }}, {{ cliente.ciudad }} - {{ cliente.direccion }}</p>
+      <p><i class="bi bi-envelope me-2"></i>{{ cliente.mail }}</p>
+      <p><i class="bi bi-telephone me-2"></i>{{ cliente.telefono }}</p>
+      <p><i class="bi bi-wallet2 me-2"></i>{{ cliente.metodopago }}</p>
 
+      </ul> 
+    </div>
 </div>
+<br> 
+{% endfor %}
 
 {% endblock %}

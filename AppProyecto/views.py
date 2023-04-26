@@ -4,6 +4,7 @@ from .forms import *
 from AppPerfiles.views import obtener_avatar
 
 from django.contrib.auth.decorators import login_required
+from django.core.paginator import Paginator
 
 
 
@@ -203,12 +204,12 @@ def listaproductos(request):
 @login_required
 def buscar(request):
     
-    nombre= request.GET["cliente"]
+    nombre = request.GET["cliente"]
     form = ClienteForm(request.GET)
     if nombre!="":
         clientes = Cliente.objects.filter(nombre__contains=nombre)
         return render(request, "AppProyecto/resultadobusqueda.html", {"clientes": clientes, "form" : form, 'avatar' : obtener_avatar(request)})
-    elif nombre=='':
+    elif nombre == '':
         return render(request, "AppProyecto/resultadobusqueda.html", {"mensaje": 'Porfavor ingrese el nombre de un cliente', 'avatar' : obtener_avatar(request)})
 
 
@@ -217,3 +218,14 @@ def buscar(request):
 
 def about(request):
     return render(request, 'AppProyecto/about.html', {'avatar' : obtener_avatar(request)})
+
+
+
+""" Funcion para mostrar todos los datos de las listas """
+
+@login_required
+def listacompleta(request):
+    productos = Productos.objects.all()
+    ventas = Ventas.objects.all()
+    clientes = Cliente.objects.all()
+    return render(request, 'AppProyecto/pages.html', {'productos' : productos, 'ventas' : ventas, 'clientes' : clientes, 'avatar' : obtener_avatar(request)})

@@ -8,7 +8,7 @@
 
 </style>
 
-<h1>Resultado de la busqueda de cliente</h1>
+<h1>Resultado de la busqueda</h1>
 
 {% endblock %}
 
@@ -20,14 +20,12 @@
 
 <div class="shadow p-4 mb-5 bg-body rounded center" style="width:50%">
 
-<h2>Clientes encontrados</h2>
+<h2>Clientes encontrados ({{ clientes|length }})</h2>
 
 <br>
-    <tbody>
 {% for cliente in clientes %}
-    </tbody>
-
-<h3>{{ cliente.nombre }} {{ cliente.apellido}}</h3>
+<h3>{{ cliente.nombre }} {{ cliente.apellido}} - {{ cliente.telefono }} </h3>
+<br>
 {% endfor %}
 </div>
 
