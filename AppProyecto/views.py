@@ -9,7 +9,7 @@ from django.core.paginator import Paginator
 
 
 def inicio(request):
-    return render(request, 'AppProyecto/inicio.html', {'avatar' : obtener_avatar(request)})
+    return render(request, 'AppProyecto/home.html', {'avatar' : obtener_avatar(request)})
 
 
 
@@ -196,7 +196,6 @@ def eliminarproducto(request, id):
 def listaproductos(request):
     productos = Productos.objects.all()
     return render(request, 'AppProyecto/productos.html', {'productos': productos, 'avatar' : obtener_avatar(request)})
-
 
 
 """ Funciones Busqueda """

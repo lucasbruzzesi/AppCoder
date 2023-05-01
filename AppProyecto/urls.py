@@ -31,7 +31,7 @@ urlpatterns = [
     path("login/", registro_login, name="login"),
     path('logout/', LogoutView.as_view(), name='logout'),
     path("signup/", registro, name="registro"),
-    path("profile/", perfil_usuario, name="perfilusuario"),
-    path('editar_perfil/', editar_perfil, name='editarPerfil'),
+    path('profile/', usuariocompleto, name="perfilusuario"),
+    path('edit_profile/', editar_perfil, name='editarPerfil'),
     path('agregar_avatar/', agregar_avatar, name='agregarAvatar')
 ]

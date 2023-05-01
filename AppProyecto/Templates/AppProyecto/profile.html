@@ -1,0 +1,49 @@
+{% extends "AppProyecto/Principal.html" %}
+
+{% load static %}
+
+{% block titulo %}
+
+<style>
+
+    .center {margin: auto;}
+
+    .card-body {display: flex;
+      flex-direction: column;
+      justify-content: center;}
+    .card-body p {text-indent: -20px;}
+
+</style>
+
+<h1 class="mb-5">Perfil: {{ user }}</h1>
+
+{% endblock %}
+
+{% block contenido_que_cambia %}
+
+{% for perfil in perfiles %}
+<div class="card">
+    <div class="card-header">
+      Detalles de perfil
+    </div>
+    <div class="card-body">
+      <h3 class="card-title">{{ perfil }}</h3>
+      <p class="card-text">
+      <ul>
+
+      <img src="{{ avatar }}" class="rounded-circle" style="display:inline; margin-left:-20px" width="120" height="120" alt="avatar"/>
+      <br> 
+      <br> 
+      <p><i class="bi bi-dash-square me-2"> Nombre completo: </i>{{ user.first_name }} {{ user.last_name }}</p>
+      <p><i class="bi bi-envelope me-2"> Mail: </i>{{ user.email }}</p>
+      <p><i class="bi bi-award me-2">Tipo de usuario: </i>{{ perfil.bio }}</p>
+      <p><i class="bi bi-calendar2 me-2"> Ultimo inicio de sesion: </i>{{ user.last_login }}</p>
+      <p><i class="bi bi-calendar2-check me-2"> Usuario registrado: </i>{{ user.date_joined }}</p>
+
+      </ul> 
+    </div>
+</div>
+<br> 
+{% endfor %}
+
+{% endblock %}

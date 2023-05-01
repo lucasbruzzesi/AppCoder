@@ -20,7 +20,11 @@
 
 <h1>Inicio de sesion</h1>
 <br>
-<h3>{{ mensaje }}</h3>
+{% if form.errors %}
+<div class="alert alert-danger">
+<h4>{{ mensaje }}</h4>
+</div>
+{% endif %}
 
 <form action="{% url 'login' %}" method="POST"> {% csrf_token %}
 
@@ -31,7 +35,7 @@
 </table>
 
 <button type="submit" class="btn btn-success">
-    <i class="bi bi-check-circle me-2"></i> Confirmar
+    <i class="bi bi-check-circle me-2"></i> Ingresar
 
 </form>
 </div>
