@@ -9,7 +9,7 @@ def agregar_avatar(request):
     if request.method == 'POST':
         form = AvatarForm(request.POST, request.FILES)
         if form.is_valid():
-            avatar = Avatar(user=request.user, imagen = request.FILES['imagen'])
+            avatar = Avatar(user = request.user, imagen = request.FILES['imagen'])
             avatar_anterior = Avatar.objects.filter(user = request.user)
             if len(avatar_anterior)>0:
                 avatar_anterior[0].delete()

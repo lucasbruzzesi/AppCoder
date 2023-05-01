@@ -49,12 +49,14 @@ def editar_perfil(request):
     if request.method == 'POST':
         form = UserEditForm(request.POST)
         if form.is_valid():
-            info=form.cleaned_data
-            usuario.email=info['email']
-            usuario.password1=info['password1']
-            usuario.password2=info['password2']
-            usuario.nombre=info['first_name']
-            usuario.apellido=info['last_name']
+            info = form.cleaned_data
+            usuario.nombre = info['first_name']
+            usuario.apellido = info['last_name']
+            usuario.bio = info['bio']
+            usuario.email = info['email']
+            usuario.link = info['link']
+            usuario.password1 = info['password1']
+            usuario.password2 = info['password2']
             usuario.save()
             return render(request, 'AppProyecto/Principal.html', {'mensaje' : f'Usuario {usuario.username} editado correctamente', 'avatar' : obtener_avatar(request)})
         else:

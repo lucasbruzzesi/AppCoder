@@ -25,7 +25,7 @@ class Ventas(models.Model):
     precio = models.CharField(max_length=20)
 
     def __str__(self):
-        return f'{self.nombre_cliente}'
+        return f'{self.nombre_cliente} - {self.productos}'
 
 
 class Productos(models.Model):

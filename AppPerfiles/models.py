@@ -4,8 +4,7 @@ from django.contrib.auth.models import User
 class Perfil(models.Model):
 
     user = models.ForeignKey(User, null=True, on_delete=models.CASCADE)
-    bio = models.TextField()
-    foto_perfil = models.ImageField(null=True, blank=True, upload_to='foto_perfil')
+    bio = models.TextField(null=True)
 
     def __str__(self):
         return f"{self.user}"

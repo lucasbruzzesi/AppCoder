@@ -21,7 +21,10 @@
 <h1> Editando Usuario</h1>
 <br>
 
-<form action="{% url 'editarPerfil' %}" method="POST"> {% csrf_token %}
+<img src="{{ avatar }}" class="rounded-circle" style="display:inline; margin-left:-20px" width="120" height="120" alt="avatar"/>
+<br>
+<br>
+<form action="{% url 'perfilusuario' %}" method="POST"> {% csrf_token %}
 
 <table>
 
