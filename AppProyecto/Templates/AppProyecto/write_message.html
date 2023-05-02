@@ -1,0 +1,22 @@
+{% extends "AppProyecto/Principal.html" %}
+
+{% load static %}
+
+{% block titulo %}
+
+<h1 class="mb-5">Chat</h1>
+
+{% endblock %}
+
+{% block contenido_que_cambia %}
+
+  <h1>Nuevo mensaje en la conversación: {{ conversation.name }}</h1>
+  <form method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Enviar</button>
+  </form>
+  <a href="{% url 'Chat' conversation.pk %}">Volver</a>
+
+
+  {% endblock %}

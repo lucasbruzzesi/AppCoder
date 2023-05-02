@@ -1,0 +1,27 @@
+{% extends "AppProyecto/Principal.html" %}
+
+{% load static %}
+
+{% block titulo %}
+
+<h1 class="mb-5">Chat</h1>
+
+{% endblock %}
+
+{% block contenido_que_cambia %}
+
+<h1>Conversación: {{ conversation.name }}</h1>
+  <ul>
+  {% for mensaje in mensajes %}
+    <li>{{ mensaje.remitente }}: {{ mensaje.contenido }}</li>
+  {% empty %}
+    <li>No hay mensajes disponibles</li>
+  {% endfor %}
+  </ul>
+  <br>
+  <a href="{% url 'EscribirMensaje' conversation.pk %}">Nuevo mensaje</a>
+  <br>
+  <a href="{% url 'ListaConversaciones' %}">Volver</a>
+
+
+  {% endblock %}

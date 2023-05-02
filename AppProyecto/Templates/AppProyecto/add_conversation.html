@@ -1,0 +1,25 @@
+{% extends "AppProyecto/Principal.html" %}
+
+{% load static %}
+
+{% block titulo %}
+
+<h1 class="mb-5">Chat</h1>
+
+{% endblock %}
+
+{% block contenido_que_cambia %}
+
+<h1>Nueva conversación</h1>
+<br>
+  <form action="{% url 'EscribirMensaje' %}" method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <br>
+    <button type="submit" class="btn btn-success">Crear</button>
+  </form>
+  <br>
+  <a href="{% url 'ListaConversaciones' %}" class="btn btn-success">Volver</a>
+
+
+  {% endblock %}

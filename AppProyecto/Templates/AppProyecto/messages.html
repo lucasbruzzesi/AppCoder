@@ -1,0 +1,27 @@
+{% extends "AppProyecto/Principal.html" %}
+
+{% load static %}
+
+{% block titulo %}
+
+<h1 class="mb-5">Chat</h1>
+
+{% endblock %}
+
+{% block contenido_que_cambia %}
+
+<h1>Conversaciones</h1>
+  <ul>
+  {% for conversation in conversations %}
+    <li><a href="{% url 'ListaConversaciones' conversacion.pk %}">{{ conversation.name }}</a></li>
+  {% empty %}
+  <br>
+    <a>No hay conversaciones disponibles</a>
+  {% endfor %}
+  </ul>
+    <br>
+  <button type="submit" class="btn btn-success">
+  <a href="{% url 'AgregarConversacion' %}">Nueva conversación</a>
+
+
+  {% endblock %}
