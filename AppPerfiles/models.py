@@ -19,7 +19,7 @@ class Avatar(models.Model):
 
 
 class Conversacion(models.Model):
-    participantes = models.ManyToManyField(User, related_name='Conversaciones')
+    participantes = models.ManyToManyField(User)
     fecha_creacion_conversacion = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
