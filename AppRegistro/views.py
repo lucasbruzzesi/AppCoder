@@ -1,7 +1,10 @@
-from django.shortcuts import render
+
 from .forms import RegistroUsuarioForm, UserEditForm, LoginForm
 from AppPerfiles.views import obtener_avatar
 from AppPerfiles.models import Perfil
+
+from django.shortcuts import render
+from django.contrib.auth.models import User
 from django.contrib.auth import login, authenticate
 
 
@@ -58,9 +61,11 @@ def editar_perfil(request):
             usuario.password1 = info['password1']
             usuario.password2 = info['password2']
             usuario.save()
+            usuarios = Perfil.objects.all()
+            form = UserEditForm()
             return render(request, 'AppProyecto/Principal.html', {'mensaje' : f'Usuario {usuario.username} editado correctamente', 'avatar' : obtener_avatar(request)})
         else:
-            return render(request, 'AppProyecto/edit_profile.html', {'form' : form, 'nombreusuario' : usuario.username, 'avatar' : obtener_avatar(request)})
+            return render(request, 'AppProyecto/edit_profile.html', {'form' : form, 'nombreusuario' : usuario.username, 'usuario': usuarios, 'avatar' : obtener_avatar(request)})
     else:
         form=UserEditForm(instance=usuario)
         return render(request, 'AppProyecto/edit_profile.html', {'form' : form, 'nombreusuario' : usuario.username, 'avatar' : obtener_avatar(request)})

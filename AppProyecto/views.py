@@ -151,8 +151,9 @@ def productos(request):
             productos = Productos()
             productos.item = form.cleaned_data['item']
             productos.descripcion = form.cleaned_data['descripcion']
-            productos.precio = form.cleaned_data['precio']
             productos.cantidad = form.cleaned_data['cantidad']
+            productos.precio = form.cleaned_data['precio']
+            productos.fecha_ingreso = form.cleaned_data['fecha_ingreso']
             productos.save()
             form = ProductosForm()
     else:
@@ -169,8 +170,9 @@ def editarproductos(request, id):
             info = form.cleaned_data
             productos.item = info['item']
             productos.descripcion = info['descripcion']
-            productos.precio = info['precio']
             productos.cantidad = info['cantidad']
+            productos.precio = info['precio']
+            productos.fecha_ingreso =info['fecha_ingreso']
             productos.save()
             productos = Productos.objects.all()
             form = ProductosForm()
@@ -181,7 +183,8 @@ def editarproductos(request, id):
             {'item':productos.item, 
             'descripcion': productos.descripcion, 
             'precio': productos.precio, 
-            'cantidad': productos.cantidad,})
+            'cantidad': productos.cantidad,
+            'fecha_ingreso': productos.fecha_ingreso})
         return render(request, 'AppProyecto/editarproducto.html', {'producto': productos, 'form': formulario, 'avatar' : obtener_avatar(request)})
 
 @login_required
@@ -198,18 +201,38 @@ def listaproductos(request):
     return render(request, 'AppProyecto/productos.html', {'productos': productos, 'avatar' : obtener_avatar(request)})
 
 
+
 """ Funciones Busqueda """
 
 @login_required
 def buscar(request):
     
     nombre = request.GET["cliente"]
-    form = ClienteForm(request.GET)
     if nombre!="":
         clientes = Cliente.objects.filter(nombre__contains=nombre)
-        return render(request, "AppProyecto/resultadobusqueda.html", {"clientes": clientes, "form" : form, 'avatar' : obtener_avatar(request)})
+        return render(request, 'AppProyecto/resultadobusqueda.html', {'clientes': clientes, 'avatar' : obtener_avatar(request)})
     elif nombre == '':
-        return render(request, "AppProyecto/resultadobusqueda.html", {"mensaje": 'Porfavor ingrese el nombre de un cliente', 'avatar' : obtener_avatar(request)})
+        return render(request, 'AppProyecto/resultadobusqueda.html', {'mensaje': 'Porfavor ingrese el nombre de un cliente', 'avatar' : obtener_avatar(request)})
+
+@login_required
+def buscar_productos(request):
+    
+    item = request.GET["productos"]
+    if item!="":
+        productos = Productos.objects.filter(item__contains=item)
+        return render(request, 'AppProyecto/resultado_busqueda_productos.html', {'productos': productos, 'avatar' : obtener_avatar(request)})
+    elif item == '':
+        return render(request, 'AppProyecto/resultado_busqueda_productos.html', {'mensaje': 'Porfavor ingrese un item', 'avatar' : obtener_avatar(request)})
+
+@login_required
+def buscar_ventas(request):
+    
+    nombre_cliente = request.GET["ventas"]
+    if nombre_cliente!="":
+        ventas = Ventas.objects.filter(nombre_cliente__contains=nombre_cliente)
+        return render(request, 'AppProyecto/resultado_busqueda_venta.html', {'ventas': ventas, 'avatar' : obtener_avatar(request)})
+    elif nombre_cliente == '':
+        return render(request, 'AppProyecto/resultado_busqueda_venta.html', {'mensaje': 'Porfavor ingrese el nombre de un cliente', 'avatar' : obtener_avatar(request)})
 
 
 

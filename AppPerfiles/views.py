@@ -1,16 +1,17 @@
 from django.db import models
-from django.http import HttpResponse
-from .models import Avatar, Conversacion, Mensaje
+from .models import Avatar
 from .forms import AvatarForm
 from typing import Any, Dict
 
-from django.db.models.query import QuerySet
 from django.shortcuts import render, get_object_or_404
-from django.views.generic import ListView, FormView, DetailView
-from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.decorators import login_required
 from django.urls import reverse_lazy
-from .forms import MensajeForm, ConversacionForm
+from django.contrib.auth.mixins import LoginRequiredMixin
+
+# from django.http import HttpResponse
+# from django.db.models.query import QuerySet
+# from django.views.generic import ListView, FormView, DetailView
+# from .forms import MensajeForm, ConversacionForm
 
 @login_required
 def agregar_avatar(request):
@@ -38,7 +39,7 @@ def obtener_avatar(request):
 
 
 
-class ConversacionListView(LoginRequiredMixin, ListView):
+# class ConversacionListView(LoginRequiredMixin, ListView):
     model = Conversacion
     template_name = 'AppProyecto/messages.html'
     context_object_name = 'conversaciones'
@@ -46,7 +47,7 @@ class ConversacionListView(LoginRequiredMixin, ListView):
     def get_queryset(self):
         return Conversacion.objects.filter(participantes = self.request.user).order_by('fecha_creacion_conversacion')
 
-class ConversacionDetailView(LoginRequiredMixin, DetailView):
+# class ConversacionDetailView(LoginRequiredMixin, DetailView):
     model = Conversacion
     template_name = 'AppProyecto/detalle_mensajes.html'
     context_object_name = 'conversacion'
@@ -59,7 +60,7 @@ class ConversacionDetailView(LoginRequiredMixin, DetailView):
         context['conversacion'] = self.objects.conversacion.all().order_by('fecha_mensaje')
         return context
 
-class IniciarConversacionView(LoginRequiredMixin, FormView):
+#class IniciarConversacionView(LoginRequiredMixin, FormView):
     form_class = ConversacionForm
     template_name = 'AppProyecto/add_conversation.html'
     success_url = reverse_lazy('AppProyecto/messages.html')
@@ -71,7 +72,7 @@ class IniciarConversacionView(LoginRequiredMixin, FormView):
         conversacion.participantes.add(*participantes)
         return super().form_valid(form)
 
-class ChatListView(LoginRequiredMixin, ListView):
+#class ChatListView(LoginRequiredMixin, ListView):
     model = Mensaje
     template_name = 'AppProyecto/messages.html'
     context_object_name = 'mensajes'
@@ -85,7 +86,7 @@ class ChatListView(LoginRequiredMixin, ListView):
         context['conversacion'] = self.conversacion
         return context
 
-class ChatView(LoginRequiredMixin, FormView):
+#class ChatView(LoginRequiredMixin, FormView):
     form_class = MensajeForm
     template_name = 'AppProyecto/write_message.html'
     success_url = reverse_lazy('AppProyecto/messages.html')

@@ -16,16 +16,18 @@
 
 <!-- DIV Cliente Encontrado -->
 
-{% if clientes %}
+{% if ventas %}
 
 <div class="shadow p-4 mb-5 bg-body rounded center" style="width:50%">
 
-<h2>Clientes encontrados ({{ clientes|length }})</h2>
+<h2>Ventas encontradas ({{ ventas|length }})</h2>
 
 <br>
-{% for cliente in clientes %}
-<h3>{{ cliente.nombre }} {{ cliente.apellido}} </h3>
-<h4> Numero de contacto: {{ cliente.telefono }} </h4>
+{% for ventas in ventas %}
+<h3>{{ ventas.nombre_cliente }} </h3>
+<br>
+<h4>Registrada el: {{ ventas.fecha }} </h4>
+<h4>Importe: {{ ventas.precio }} </h4>
 <br>
 {% endfor %}
 </div>
@@ -44,7 +46,7 @@
 
 <div class="shadow p-4 mb-5 bg-body rounded center" style="width:50%">
 
-<h2>No se encontro el cliente</h2>
+<h2>No se encontro la venta</h2>
 
 </div>
 

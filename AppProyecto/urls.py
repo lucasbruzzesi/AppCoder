@@ -25,6 +25,9 @@ urlpatterns = [
     path("agregar_nueva_venta", ventas, name="agregarnuevaventa"),
 
     path('buscar/', buscar, name="Buscar"),
+    path('buscar_productos/', buscar_productos, name="BuscarProducto"),
+    path('buscar_ventas/', buscar_ventas, name="BuscarVenta"),
+    # path('buscar2/', buscar2, name="Buscar2"),
     path('about/', about, name ='About'),
     path('pages/', listacompleta, name ='Pages'),
     
@@ -35,8 +38,8 @@ urlpatterns = [
     path('edit_profile/', editar_perfil, name='editarPerfil'),
     path('agregar_avatar/', agregar_avatar, name='agregarAvatar'),
 
-    path('messages/', ConversacionListView.as_view(), name='ListaConversaciones'),
-    path('add_conversation/', IniciarConversacionView.as_view(), name='AgregarConversacion'),
-    path('chat/', ChatListView.as_view(), name='Chat'),
-    path('write_message/', ChatView.as_view(), name='EscribirMensaje')
+#    path('messages/', ConversacionListView.as_view(), name='ListaConversaciones'),
+#    path('add_conversation/', IniciarConversacionView.as_view(), name='AgregarConversacion'),
+#    path('chat/', ChatListView.as_view(), name='Chat'),
+#    path('write_message/', ChatView.as_view(), name='EscribirMensaje')
 ]
