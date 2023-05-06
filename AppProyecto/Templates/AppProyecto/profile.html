@@ -11,7 +11,15 @@
     .card-body {display: flex;
       flex-direction: column;
       justify-content: center;}
+    
     .card-body p {text-indent: -20px;}
+
+    .avatar-image {
+      width: 150px;
+      height: 150px;
+      object-fit: cover;
+      border-radius: 50%;
+      box-shadow: 0px 0px 10px #888888;}
 
 </style>
 
@@ -30,8 +38,7 @@
       <h3 class="card-title">{{ user }}</h3>
       <p class="card-text">
       <ul>
-
-      <img src="{{ avatar }}" class="rounded-circle" style="display:inline; margin-left:-20px" width="120" height="120" alt="avatar"/>
+      <img src="{{ avatar }}" class="avatar-image" style="display:inline; margin-left:-20px" width="120" height="120" alt="avatar"/>
       <br> 
       <br> 
       <p><i class="bi bi-dash-square me-2"> Nombre completo: </i>{{ user.first_name }} {{ user.last_name }}</p>

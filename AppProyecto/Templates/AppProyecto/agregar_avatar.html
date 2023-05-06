@@ -8,31 +8,25 @@
 
     .center {margin: auto;}
 
-    .button-container button {
-        margin-right: 10px;
-    }
+    .button-container button {margin-right: 10px;}
 
-<style>
-        .avatar-container {
-            margin: auto;
-            width: 60%;
-        }
-        .avatar-image {
-            width: 150px;
-            height: 150px;
-            object-fit: cover;
-            border-radius: 50%;
-            box-shadow: 0px 0px 10px #888888;
-        }
-        .avatar-form {
-            margin-top: 30px;
-        }
-        .button-container {
-            margin-top: 20px;
-        }
-        .button-container button {
-            margin-right: 10px;
-        }
+    .avatar-container {
+        margin: auto;
+        width: 60%;}
+
+    .avatar-image {
+        width: 150px;
+        height: 150px;
+        object-fit: cover;
+        border-radius: 50%;
+        box-shadow: 0px 0px 10px #888888;}
+
+    .avatar-form {margin-top: 30px;}
+
+    .button-container {margin-top: 20px;}
+
+    .button-container button {margin-right: 10px;}
+
 </style>
 
 <h1 class="mb-5">Avatar: {{ user }} </h1>
@@ -40,7 +34,7 @@
 
 {% block contenido_que_cambia %}
 <div class="shadow p-4 mb-5 bg-body rounded avatar-container">
-    <h1 class="text-center mb-4">Agregar Avatar</h1>
+    <h1 class="text-center mb-4">Edicion de Avatar</h1>
     {% if avatar %}
     <div class="text-center">
         <img src="{{ avatar }}" alt="Avatar" class="avatar-image">
