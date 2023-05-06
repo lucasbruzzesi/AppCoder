@@ -1,0 +1,11 @@
+{% extends "AppProyecto/Principal.html" %}
+
+{% load static %}
+
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_hidden }}
+    <button type="submit" class="btn btn-danger">
+        <i class="bi bi-trash me-2"></i> Eliminar Avatar
+    </button>
+</form>

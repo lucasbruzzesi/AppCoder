@@ -1,7 +1,15 @@
-# WEB Django Shop con formularios de datos
+WEB Django Shop con formularios de datos
 
-## Formularios para clientes, productos y ventas
+Proyecto Final Coder House - Python
+Comisión: 51325
+Alumno: Lucas Bruzzesi
 
+Descripcion del proyecto:
+
+Orientado a e-commerce.
+Se cuenta con formularios para clientes, productos y ventas.
 
 - Se pueden agregar nuevos clientes, nuevos productos y registrar ventas en tablas.
-- Se incluye formulario de busqueda con formato bootstrap dentro de clientes para buscarlos por nombres.
+- Se incluyen busquedas dentro de los formularios para mostrar datos relevantes.
+
+Se adjunta archivo de pruebas del proyecto con el nombre ''Casos de prueba Proyecto Final'' dentro del repositorio.

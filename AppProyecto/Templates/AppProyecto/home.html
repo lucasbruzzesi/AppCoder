@@ -4,7 +4,11 @@
 
 <style>
 
-    .center {margin: auto;}
+  .center {margin: auto;}
+
+  .card-body {display: flex;
+      flex-direction: column;
+      justify-content: center;}
 
 </style>
 
@@ -40,6 +44,19 @@
     <span class="visually-hidden">Siguiente</span>
   </button>
 </div>
+<br>
+<div class="row">
+  <div class="col-md-4 center">
+      <div class="card">
+          <div class="card-body">
+              <h5 class="card-title">Formularios</h5>
+              <p class="card-text">Acceda a los distintos formularios con los que contamos en la pagina.</p>
+              <a href="{% url 'Pages' %}" class="btn btn-primary">Pages</a>
+          </div>
+      </div>
+  </div>
+</div>
+
 
 
 {% endblock %}

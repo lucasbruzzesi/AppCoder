@@ -1,6 +1,8 @@
 from django.contrib import admin
 from .models import Cliente,Ventas,Productos
 
+# Personalizacion de Modelos en Administracion de django
+
 @admin.register(Cliente)
 class ClienteAdmin(admin.ModelAdmin):
     list_display = ('nombre', 'apellido', 'mail')

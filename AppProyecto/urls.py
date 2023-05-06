@@ -9,6 +9,8 @@ urlpatterns = [
 
     path('', inicio, name = 'InicioApp'),
 
+# URLS Formularios
+
     path('clientes/', listaclientes, name='Cliente'),
     path("editarcliente/<id>", editarclientes, name="editarcliente"),
     path("eliminarcliente/<id>", eliminarcliente, name="eliminarcliente"),
@@ -24,19 +26,26 @@ urlpatterns = [
     path("eliminarventa/<id>", eliminarventa, name="eliminarventa"),
     path("agregar_nueva_venta", ventas, name="agregarnuevaventa"),
 
+#URL Busquedas
+
     path('buscar/', buscar, name="Buscar"),
     path('buscar_productos/', buscar_productos, name="BuscarProducto"),
     path('buscar_ventas/', buscar_ventas, name="BuscarVenta"),
-    # path('buscar2/', buscar2, name="Buscar2"),
+
+#URLS Inicio
+
     path('about/', about, name ='About'),
     path('pages/', listacompleta, name ='Pages'),
-    
+
+# URLS Profile
+
     path("login/", registro_login, name="login"),
     path('logout/', LogoutView.as_view(), name='logout'),
     path("signup/", registro, name="registro"),
-    path('profile/', usuariocompleto, name="perfilusuario"),
-    path('edit_profile/', editar_perfil, name='editarPerfil'),
+    path('profile/<id>', usuariocompleto, name="perfilusuario"),
+    path('edit_profile/<id>', editar_perfil, name='editarPerfil'),
     path('agregar_avatar/', agregar_avatar, name='agregarAvatar'),
+    path("eliminaravatar", eliminaravatar, name="eliminaravatar")
 
 #    path('messages/', ConversacionListView.as_view(), name='ListaConversaciones'),
 #    path('add_conversation/', IniciarConversacionView.as_view(), name='AgregarConversacion'),

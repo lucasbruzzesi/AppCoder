@@ -22,44 +22,48 @@
         <style>
             .dropdown {display: inline-block;}
         </style>
-        <nav class="navbar navbar-dark bg-dark fixed-top">
+        <nav class="navbar navbar-dark bg-dark fixed-top" role="navigation">
             <div class="container-fluid">
                     <a class="navbar-brand" href="{% url 'InicioApp' %}">Bike Shop</a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarNav">
+                        <ul class="navbar-nav me-auto">
                     {% if user.is_authenticated %}
-                    <div class="dropdown">
-                        <a class="btn btn-primary dropdown-toggle" href="#" data-bs-toggle="dropdown">Cliente</a>
-                        <ul class="dropdown-menu">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Cliente</a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown1">
                             <li><a class="dropdown-item" href="{% url 'Cliente' %}">Listado Clientes</a></li>
                             <li><a class="dropdown-item" href="{% url 'agregarnuevocliente' %}">Agregar Nuevo Cliente</a></li>
                         </ul>
-                    </div>
-                    <div class="dropdown">
-                        <a class="btn btn-primary dropdown-toggle" href="#" data-bs-toggle="dropdown">Productos</a>
-                        <ul class="dropdown-menu">
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Productos</a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown2">
                             <li><a class="dropdown-item" href="{% url 'Productos' %}">Listado De Productos</a></li>
                             <li><a class="dropdown-item" href="{% url 'agregarnuevoproducto' %}">Agregar Nuevo Producto</a></li>
                         </ul>
-                    </div>
-                    <div class="dropdown">
-                        <a class="btn btn-primary dropdown-toggle" href="#" data-bs-toggle="dropdown">Ventas</a>
-                        <ul class="dropdown-menu">
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Ventas</a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown3">
                             <li><a class="dropdown-item" href="{% url 'Ventas' %}">Listado De Ventas</a></li>
                             <li><a class="dropdown-item" href="{% url 'agregarnuevaventa' %}">Registrar Nueva Venta</a></li>
                         </ul>
-                    </div>
-                    <div class="dropdown">
-                        <a class="btn btn-success dropdown-toggle" href="#" data-bs-toggle="dropdown">Usuario: {{ user.username }}</a>
-                        <img class="rounded-circle" src="{{ avatar }}" alt="avatar" style="width:50px;height:50px;"/>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="{% url 'perfilusuario' %}">Ver Perfil</a></li>
+                    </li>
+                    <div class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Usuario activo: {{ user.username }}</a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown4">
+                            <li><a class="dropdown-item" href="{% url 'perfilusuario' user.id %}">Ver Perfil</a></li>
                             <li><a class="dropdown-item" href="{% url 'agregarAvatar' %}">Editar Avatar</a></li>
-                            <li><a class="dropdown-item" href="{% url 'editarPerfil' %}">Editar Perfil</a></li>
+                            <li><a class="dropdown-item" href="{% url 'editarPerfil' user.id %}">Editar Perfil</a></li>
                             <li><a class="dropdown-item" onclick="alert('Sesion Cerrada Correctamente')" href="{% url 'logout' %} ">Cerrar Sesion</a></li>
                         </ul>
                     </div>
                     {% else %}
-                    <a class="btn btn-success" href="{% url 'login' %}">Iniciar Sesion</a>
-                    <a class="btn btn-danger" href="{% url 'registro' %}">Registrarse</a>
+                    <a class="nav-link" href="{% url 'login' %}">Iniciar Sesion</a>
+                    <a class="nav-link" href="{% url 'registro' %}">Registrarse</a>
                     {% endif %}
             </div>
         </nav>

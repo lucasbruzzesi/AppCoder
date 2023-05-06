@@ -21,7 +21,7 @@
 
 {% block contenido_que_cambia %}
 
-{% for perfil in perfiles %}
+{% if user %}
 <div class="card">
     <div class="card-header">
       Detalles de perfil
@@ -36,13 +36,12 @@
       <br> 
       <p><i class="bi bi-dash-square me-2"> Nombre completo: </i>{{ user.first_name }} {{ user.last_name }}</p>
       <p><i class="bi bi-envelope me-2"> Mail: </i>{{ user.email }}</p>
-      <p><i class="bi bi-award me-2">Bio: </i>{{ perfil.bio }}</p>
       <p><i class="bi bi-calendar2-check me-2"> Usuario registrado: </i>{{ user.date_joined }}</p>
 
       </ul> 
     </div>
 </div>
 <br> 
-{% endfor %}
+{% endif %}
 
 {% endblock %}

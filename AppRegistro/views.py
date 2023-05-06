@@ -1,7 +1,5 @@
-
 from .forms import RegistroUsuarioForm, UserEditForm, LoginForm
 from AppPerfiles.views import obtener_avatar
-from AppPerfiles.models import Perfil
 
 from django.shortcuts import render
 from django.contrib.auth.models import User
@@ -9,7 +7,7 @@ from django.contrib.auth import login, authenticate
 
 
 
-""" Funcion Login """
+# Funciones Login
 
 def registro(request):
     if request.method == 'POST':
@@ -47,29 +45,29 @@ def registro_login(request):
         form = LoginForm()
         return render(request, 'AppProyecto/login.html', {'form':form, 'avatar' : obtener_avatar(request)})
 
-def editar_perfil(request):
-    usuario = request.user
+# Funciones Perfil
+
+def editar_perfil(request, id):
+    usuario = User.objects.get(id=id)
     if request.method == 'POST':
         form = UserEditForm(request.POST)
         if form.is_valid():
             info = form.cleaned_data
-            usuario.nombre = info['first_name']
-            usuario.apellido = info['last_name']
-            usuario.bio = info['bio']
+            usuario.first_name = info['first_name']
+            usuario.last_name = info['last_name']
             usuario.email = info['email']
             usuario.link = info['link']
             usuario.password1 = info['password1']
             usuario.password2 = info['password2']
             usuario.save()
-            usuarios = Perfil.objects.all()
-            form = UserEditForm()
-            return render(request, 'AppProyecto/Principal.html', {'mensaje' : f'Usuario {usuario.username} editado correctamente', 'avatar' : obtener_avatar(request)})
+            return render(request, 'AppProyecto/profile.html', {'avatar' : obtener_avatar(request)})
         else:
-            return render(request, 'AppProyecto/edit_profile.html', {'form' : form, 'nombreusuario' : usuario.username, 'usuario': usuarios, 'avatar' : obtener_avatar(request)})
+            form=UserEditForm(instance=usuario)
+            return render(request, 'AppProyecto/edit_profile.html', {'form' : form, 'nombreusuario' : usuario.username, 'usuario': usuario, 'avatar' : obtener_avatar(request)})
     else:
         form=UserEditForm(instance=usuario)
         return render(request, 'AppProyecto/edit_profile.html', {'form' : form, 'nombreusuario' : usuario.username, 'avatar' : obtener_avatar(request)})
 
-def usuariocompleto(request):
-    perfiles = Perfil.objects.all()
-    return render(request, 'AppProyecto/profile.html', {'perfiles' : perfiles, 'avatar' : obtener_avatar(request)})
+def usuariocompleto(request, id):
+    usuario = User.objects.get(id=id)
+    return render(request, 'AppProyecto/profile.html', {'usuario' : usuario, 'avatar' : obtener_avatar(request)})

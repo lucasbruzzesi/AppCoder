@@ -9,35 +9,48 @@
     .card-body {display: flex;
         flex-direction: column;
         justify-content: center;}
-    .card-body p {text-indent: -20px;}
 
 </style>
 
-<h1>Indice</h1>
+<h1>Administracion de datos de la web</h1>
 
 {% endblock %}
 
 {% block contenido_que_cambia %}
 
-{% for cliente in clientes %}
-<div class="card">
-    <div class="card-header">
-      Detalles de cliente
-    </div>
-    <div class="card-body">
-      <h5 class="card-title">{{ cliente }}</h5>
-      <p class="card-text">
-      <ul>
-
-      <p><i class="bi bi-geo-alt me-2"></i>{{ cliente.pais }}, {{ cliente.ciudad }} - {{ cliente.direccion }}</p>
-      <p><i class="bi bi-envelope me-2"></i>{{ cliente.mail }}</p>
-      <p><i class="bi bi-telephone me-2"></i>{{ cliente.telefono }}</p>
-      <p><i class="bi bi-wallet2 me-2"></i>{{ cliente.metodopago }}</p>
-
-      </ul> 
-    </div>
+<div class="container">
+  <h1>Registros disponibles</h1>
+  <br>
+  <br>
+  <div class="row">
+      <div class="col-md-4">
+          <div class="card">
+              <div class="card-body">
+                  <h5 class="card-title">Formulario de clientes</h5>
+                  <p class="card-text">Agrega, edita o elimina clientes.</p>
+                  <a href="{% url 'Cliente' %}" class="btn btn-primary">Ir al formulario</a>
+              </div>
+          </div>
+      </div>
+      <div class="col-md-4">
+          <div class="card">
+              <div class="card-body">
+                  <h5 class="card-title">Formulario de ventas</h5>
+                  <p class="card-text">Registra nuevas ventas o edita ventas existentes.</p>
+                  <a href="{% url 'Ventas' %}" class="btn btn-primary">Ir al formulario</a>
+              </div>
+          </div>
+      </div>
+      <div class="col-md-4">
+          <div class="card">
+              <div class="card-body">
+                  <h5 class="card-title">Formulario de productos</h5>
+                  <p class="card-text">Agrega, edita o elimina productos.</p>
+                  <a href="{% url 'Productos' %}" class="btn btn-primary">Ir al formulario</a>
+              </div>
+          </div>
+      </div>
+  </div>
 </div>
-<br> 
-{% endfor %}
 
 {% endblock %}

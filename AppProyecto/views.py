@@ -13,7 +13,7 @@ def inicio(request):
 
 
 
-""" Funciones Clientes """
+# Funciones Clientes
 
 @login_required
 def clientes(request):
@@ -83,7 +83,7 @@ def listaclientes(request):
 
 
 
-""" Funciones Ventas """
+# Funciones Ventas
 
 @login_required
 def ventas(request):
@@ -141,7 +141,7 @@ def listaventas(request):
 
 
 
-""" Funciones Productos """
+# Funciones Productos
 
 @login_required
 def productos(request):
@@ -202,7 +202,7 @@ def listaproductos(request):
 
 
 
-""" Funciones Busqueda """
+# Funciones Busqueda
 
 @login_required
 def buscar(request):
@@ -236,14 +236,14 @@ def buscar_ventas(request):
 
 
 
-""" Funciones 'Acerca de mi' """
+# Funciones 'Acerca de mi'
 
 def about(request):
     return render(request, 'AppProyecto/about.html', {'avatar' : obtener_avatar(request)})
 
 
 
-""" Funcion para mostrar todos los datos de las listas """
+# Funcion para mostrar todos los datos de las listas
 
 @login_required
 def listacompleta(request):

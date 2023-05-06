@@ -3,29 +3,54 @@ from django.contrib.auth.models import User
 
 class Perfil(models.Model):
 
-    user = models.ForeignKey(User, null = True, on_delete = models.CASCADE)
-    bio = models.TextField(null = True)
+    user = models.ForeignKey(User, on_delete = models.CASCADE)
+    nombre = models.CharField(max_length=20)
+    apellido = models.CharField(max_length=20)
+    email = models.EmailField(max_length=20)
+    link = models.CharField(max_length=200)
 
     class Meta: 
-        verbose_name = "Perfil"
-        verbose_name_plural = "Perfiles"
+        verbose_name = 'Perfil'
+        verbose_name_plural = 'Perfiles'
 
     def __str__(self):
-        return f'{self.user}'
+        return f'{self.user} - {self.nombre} {self.apellido}'
 
 
 class Avatar(models.Model):
-    imagen = models.ImageField(upload_to = 'avatares')
+
+    imagen = models.ImageField(upload_to = 'avatares', blank = True)
     user = models.ForeignKey(User, on_delete = models.CASCADE)
 
     class Meta: 
-        verbose_name = "Avatar"
-        verbose_name_plural = "Avatares"
+        verbose_name = 'Avatar'
+        verbose_name_plural = 'Avatares'
 
     def __str__(self):
         return f'{self.user} - {self.imagen}'
 
 
+
+
+
+
+
+
+
+
+
+
+# class CustomUser(AbstractBaseUser):
+
+#    user = models.ForeignKey(User, on_delete = models.CASCADE)
+#    first_name = models.CharField(max_length=20)
+#    last_name = models.CharField(max_length=20)
+#    link = models.CharField(max_length=200, blank = True)
+
+#    USERNAME_FIELD = ('first_name', 'last_name', 'link')
+
+#    def __str__(self):
+#        return f'{self.user}'
 
 
 # class Conversacion(models.Model):

@@ -10,7 +10,7 @@
 
 </style>
 
-<h1 class="mb-5">Editando usuario: {{ nombreusuario }} </h1>
+<h1 class="mb-5">Editando usuario: {{ user }} </h1>
 
 {% endblock %}
 
@@ -24,7 +24,7 @@
 <img src="{{ avatar }}" class="rounded-circle" style="display:inline; margin-left:-20px" width="120" height="120" alt="avatar"/>
 <br>
 <br>
-<form action="{% url 'perfilusuario' %}" method="POST"> {% csrf_token %}
+<form action="{% url 'editarPerfil' user.id %}" method="POST"> {% csrf_token %}
 
 <table>
 
@@ -32,7 +32,7 @@
 
 </table>
 
-<button type="submit" class="btn btn-info">
+<button type="submit" onclick="alert('El usuario ha sido modificado')" class="btn btn-info">
     <i class="bi bi-check-circle me-2"></i> Guardar Cambios
 
 </form>
