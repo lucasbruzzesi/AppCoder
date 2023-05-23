@@ -1,0 +1,64 @@
+{% extends "AppProyecto/Principal.html" %}
+
+{% load static %}
+
+{% block titulo %}
+
+<style>
+
+    .center {margin: auto;}
+
+    .button-container button {margin-right: 10px;}
+
+    .avatar-container {
+        margin: auto;
+        width: 60%;}
+
+    .avatar-image {
+        width: 150px;
+        height: 150px;
+        object-fit: cover;
+        border-radius: 50%;
+        box-shadow: 0px 0px 10px #888888;}
+
+    .avatar-form {margin-top: 30px;}
+
+    .button-container {margin-top: 20px;}
+
+    .button-container button {margin-right: 10px;}
+
+</style>
+
+<h1 class="mb-5">Producto: {{ producto }} </h1>
+{% endblock %}
+
+{% block contenido_que_cambia %}
+<div class="shadow p-4 mb-5 bg-body rounded avatar-container">
+    <h1 class="text-center mb-4">Imagen de producto</h1>
+    {% if producto %}
+    <div class="text-center">
+        <img src="{{ producto }}" alt="Producto" class="avatar-image">
+    </div>
+    {% endif %}
+    <form class="imagen_producto-form" action="{% url 'AgregarImagenProducto' %}" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="form-group">
+            {{ form.imagen.label_tag }}
+            {{ form.imagen }}
+        </div>
+        <div class="button-container text-center">
+            <button type="submit" class="btn btn-success">
+                <i class="bi bi-check-circle me-2"></i> Agregar
+            </button>
+            {% if avatar %}
+            <a href="{% url 'eliminaravatar' %}" class="btn btn-danger">
+                <i class="bi bi-trash me-2"></i> Eliminar
+            </a>
+            {% endif %}
+        </div>
+    </form>
+</div>
+
+
+
+{% endblock %}

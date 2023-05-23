@@ -34,6 +34,23 @@ class Productos(models.Model):
     def __str__(self):
         return f'{self.item}'
 
+class DetalleProducto(models.Model):
+
+    titulo = models.CharField(max_length=50)
+    imagen = models.ImageField(upload_to = 'productos', blank = True)
+    autor = models.CharField(max_length=50)
+    descripcion = models.CharField(max_length=500)
+    fecha = models.DateField(auto_now_add=True)
+
+    productos = models.ForeignKey(Productos, on_delete = models.CASCADE)
+
+    class Meta: 
+        verbose_name = 'Detalle Producto'
+        verbose_name_plural = 'Detalle de productos'
+
+    def __str__(self):
+        return f'{self.titulo} - {self.imagen}'
+
 class Ventas(models.Model):
 
     nombre_cliente = models.CharField(max_length=50)
@@ -48,4 +65,12 @@ class Ventas(models.Model):
     def __str__(self):
         return f'{self.nombre_cliente} - {self.productos}'
 
+class Reseña(models.Model):
+    titulo = models.CharField(max_length=50)
+    imagen = models.ImageField(upload_to = 'reseñas', blank = True)
+    autor = models.CharField(max_length=50)
+    comentario = models.TextField()
+    fecha = models.DateField(auto_now_add=True)
 
+    def __str__(self):
+        return self.titulo

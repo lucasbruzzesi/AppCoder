@@ -4,12 +4,13 @@ from .forms import *
 from AppPerfiles.views import obtener_avatar
 
 from django.contrib.auth.decorators import login_required
-from django.core.paginator import Paginator
+# from django.core.paginator import Paginator
 
 
 
 def inicio(request):
-    return render(request, 'AppProyecto/home.html', {'avatar' : obtener_avatar(request)})
+    reseñas = Reseña.objects.all()
+    return render(request, 'AppProyecto/home.html', {'reseñas' : reseñas, 'avatar' : obtener_avatar(request)})
 
 
 
@@ -200,7 +201,49 @@ def listaproductos(request):
     productos = Productos.objects.all()
     return render(request, 'AppProyecto/productos.html', {'productos': productos, 'avatar' : obtener_avatar(request)})
 
+#@login_required
+#def imagenproductos(request):
+#    if request.method == 'POST':
+#        form = ImagenProductoForm(request.POST, request.FILES)
+#        if form.is_valid():
+#            imagenproducto = DetalleProducto(user = request.user, imagen = request.FILES['imagen'])
+#            imagen_producto_anterior = DetalleProducto.objects.filter(user = request.user)
+#            if len(imagen_producto_anterior)>0:
+#                imagen_producto_anterior[0].delete()
+#            imagenproducto.save()
+#            return render(request, 'AppProyecto/productos.html', {'avatar' : obtener_avatar(request)})
+#        else:
+#            return render(request, 'AppProyecto/agregar_imagen_producto.html', {'form' : form, 'usuario' : request.user, 'avatar' : obtener_avatar(request)})
+#    else:
+#        form=ImagenProductoForm()
+#        return render(request, 'AppProyecto/agregar_imagen_producto.html', {'form' : form, 'usuario' : request.user, 'avatar' : obtener_avatar(request)})
 
+#def obtener_imagen_producto(request):
+#    productos = DetalleProducto.objects.filter(imagen=request.productos.id)
+#    if len(productos)!=0:
+#        return productos[0].imagen.url
+#    else:
+#        return '/media/productos/default_product.jpg'
+
+#def eliminar_imagen_producto(request):
+#    imagenproducto = DetalleProducto.objects.get()
+#    imagenproducto.delete()
+#    return render(request, 'AppProyecto/productos.html', {'avatar' : obtener_avatar(request)})
+
+#def detalles_producto(request, id):
+#    producto = Productos.objects.get(id=id)
+#    if request.method == 'GET':
+#        form = DetalleProductoForm(request.GET)
+#        if form.is_valid():
+#            info = form.cleaned_data
+#            usuario.first_name = info['first_name']
+#            usuario.last_name = info['last_name']
+#            usuario.email = info['email']
+#            usuario.link = info['link']
+#            usuario.password1 = info['password1']
+#            usuario.password2 = info['password2']
+#            usuario.save()
+#    return render(request, 'AppProyecto/detalles_producto.html', {'producto' : producto, 'avatar' : obtener_avatar(request)})
 
 # Funciones Busqueda
 
@@ -251,3 +294,29 @@ def listacompleta(request):
     ventas = Ventas.objects.all()
     clientes = Cliente.objects.all()
     return render(request, 'AppProyecto/pages.html', {'productos' : productos, 'ventas' : ventas, 'clientes' : clientes, 'avatar' : obtener_avatar(request)})
+
+# Funcion Reseñas
+
+@login_required
+def reseñas(request):
+    if request.method == 'POST':
+        form = ReseñasForm(request.POST)
+        if form.is_valid():
+            reseñas = Reseña()
+            reseñas.titulo = form.cleaned_data['titulo']
+            reseñas.autor = form.cleaned_data['autor']
+            reseñas.comentario = form.cleaned_data['comentario']
+            reseñas.save()
+            form = ReseñasForm()
+    else:
+        form = ReseñasForm()
+
+    return render(request, 'AppProyecto/reseña.html', {"form" : form, 'avatar' : obtener_avatar(request)})
+
+@login_required
+def eliminar_reseña(request, id):
+    reseña = Reseña.objects.get(id=id)
+    reseña.delete()
+    reseñas = Reseña.objects.all()
+    form = ReseñasForm()
+    return render(request, 'AppProyecto/home.html', {'reseña': reseñas, 'form': form, 'avatar' : obtener_avatar(request)})

@@ -17,9 +17,11 @@ urlpatterns = [
     path("agregar_nuevo_cliente", clientes, name="agregarnuevocliente"),
 
     path('productos/', listaproductos, name='Productos'),
+#    path('detalles_producto/<id>', detalles_producto, name='DetalleProducto'),
     path("editarproducto/<id>", editarproductos, name="editarproducto"),
     path("eliminarproducto/<id>", eliminarproducto, name="eliminarproducto"),
     path("agregar_nuevo_producto", productos, name="agregarnuevoproducto"),
+#    path('agregar_imagen_producto', imagenproductos, name='AgregarImagenProducto'),
 
     path('ventas/', listaventas, name='Ventas'),
     path("editarventa/<id>", editarventas, name="editarventa"),
@@ -36,6 +38,8 @@ urlpatterns = [
 
     path('about/', about, name ='About'),
     path('pages/', listacompleta, name ='Pages'),
+    path('nueva_reseña/', reseñas, name ='Reseñas'),
+    path('eliminar_reseña/<id>', eliminar_reseña, name='eliminar_reseña'),
 
 # URLS Profile
 
@@ -46,6 +50,9 @@ urlpatterns = [
     path('edit_profile/<id>', editar_perfil, name='editarPerfil'),
     path('agregar_avatar/', agregar_avatar, name='agregarAvatar'),
     path("eliminaravatar", eliminaravatar, name="eliminaravatar")
+
+
+
 
 #    path('messages/', ConversacionListView.as_view(), name='ListaConversaciones'),
 #    path('add_conversation/', IniciarConversacionView.as_view(), name='AgregarConversacion'),

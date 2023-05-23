@@ -1,0 +1,55 @@
+{% extends "AppProyecto/Principal.html" %}
+
+{% load static %}
+
+{% block titulo %}
+
+<style>
+
+    .center {margin: auto;}
+
+    .card-body {display: flex;
+      flex-direction: column;
+      justify-content: center;}
+    
+    .card-body p {text-indent: -20px;}
+
+    .avatar-image {
+      width: 150px;
+      height: 150px;
+      object-fit: cover;
+      border-radius: 50%;
+      box-shadow: 0px 0px 10px #888888;}
+
+</style>
+
+<h1 class="mb-5">Producto: {{ producto }}</h1>
+
+{% endblock %}
+
+{% block contenido_que_cambia %}
+
+{% if producto %}
+<div class="card">
+    <div class="card-header">
+      Detalles de producto
+    </div>
+    <div class="card-body">
+      <h3 class="card-title">{{ producto }}</h3>
+      <p class="card-text">
+      <ul>
+      <img src="{{ imagen_producto }}" class="imagen_producto-image" style="display:inline; margin-left:-20px" width="120" height="120" alt="producto"/>
+      <br> 
+      <br> 
+      <p><i class="bi bi-dash-square me-2"> Titulo: </i>{{ producto.titulo }}</p>
+      <p><i class="bi bi-envelope me-2"> Autor: </i>{{ user.autor }}</p>
+      <p><i class="bi bi-calendar2-check me-2"> Descripcion: </i>{{ user.descripcion }}</p>
+      <p><i class="bi bi-calendar2-check me-2"> Fecha de ingreso: </i>{{ user.fecha }}</p>
+
+      </ul> 
+    </div>
+</div>
+<br> 
+{% endif %}
+
+{% endblock %}
