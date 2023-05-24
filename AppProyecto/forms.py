@@ -42,4 +42,3 @@ class ReseñasForm(forms.Form):
     titulo = forms.CharField(widget=forms.TextInput(attrs={'class':'form-control', 'placeholder':'Ingresar Titulo'}), max_length=50, label="")
     autor = forms.CharField(widget=forms.TextInput(attrs={'class':'form-control', 'placeholder':'Ingresar Autor'}), max_length=50, label="")
     comentario = forms.CharField(widget=forms.Textarea(attrs={'class':'form-control', 'rows':5, 'placeholder':'Escribir Reseña'}), label="")
-    valoracion = forms.ChoiceField(choices=[(1, '1 estrella'), (2, '2 estrellas'), (3, '3 estrellas'), (4, '4 estrellas'), (5, '5 estrellas')])

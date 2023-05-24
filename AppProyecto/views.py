@@ -319,4 +319,4 @@ def eliminar_reseña(request, id):
     reseña.delete()
     reseñas = Reseña.objects.all()
     form = ReseñasForm()
-    return render(request, 'AppProyecto/home.html', {'reseña': reseñas, 'form': form, 'avatar' : obtener_avatar(request)})
+    return render(request, 'AppProyecto/home.html', {'reseñas': reseñas, 'form': form, 'avatar' : obtener_avatar(request)})

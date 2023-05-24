@@ -22,39 +22,6 @@
 <div class="shadow p-4 mb-5 bg-body rounded center" style="width:50%">
 <h1> Inicio</h1>
 </div>
-
-<div class="row">
-  <div class="col-md-8 offset-md-2">
-    <div class="card">
-      <div class="card-body">
-        <h3 class="card-title text-center mb-4">Reseñas</h3>
-        {% for reseña in reseñas %}
-          <div class="card mb-4">
-            <div class="card-body">
-              <h5 class="card-title">{{ reseña.titulo }}</h5>
-              <div class="d-flex align-items-center">
-                <img src='{% static "AppProyecto/assets/img/reseñas.png" %}' width="120" height="120" alt='{{ reseña.titulo }}' class="img-fluid rounded mr-3">
-                <p class="card-text" style="margin-left: 10px;">''{{ reseña.comentario }}''</p>
-              </div>
-              <p class="card-text">Autor: {{ reseña.autor }}</p>
-              <p class="card-text">Fecha: {{ reseña.fecha }}</p>
-              {% if user.is_authenticated %}
-              <a class="btn btn-sm btn-danger bi bi-trash-fill" href="{% url 'eliminar_reseña'  reseña.id  %}"></a>
-              {% endif %}
-            </div>
-          </div>
-        {% empty %}
-          <p class="text-center">Actualmente no hay reseñas.</p>
-        {% endfor %}
-        <div class="text-center">
-          {% if user.is_authenticated %}
-          <a class="btn btn-sm btn-success" href="{% url 'Reseñas' %}">Dejar una Reseña</a>
-          {% endif %}
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
 <br>
 <div id="myCarousel" class="carousel slide carousel-fade" data-ride="carousel">
   <div class="carousel-inner">
@@ -85,9 +52,42 @@
           <div class="card-body">
               <h5 class="card-title">Formularios</h5>
               <p class="card-text">Acceda a los distintos formularios con los que contamos en la pagina.</p>
-              <a href="{% url 'Pages' %}" class="btn btn-primary">Pages</a>
+              <a href="{% url 'Pages' %}" class="btn btn-primary">Ingresar</a>
           </div>
       </div>
+  </div>
+</div>
+<br>
+<div class="row">
+  <div class="col-md-8 center">
+    <div class="card-body">
+      {% for reseña in reseñas %}
+        <div class="card mb-4 center" style='width: 60%;'>
+          <div class="card-body">
+            <h5 class="card-title" style='margin-left: 115px;'>{{ reseña.titulo }}</h5>
+            <div class="d-flex align-items-center">
+              <img src='{% static "AppProyecto/assets/img/reseñas.png" %}' width="120" height="120" alt='{{ reseña.titulo }}' class="img-fluid rounded mr-3">
+              <p class="card-text" style="margin-left: 10px; color: #787878; font-family: 'Pathway Gothic One'; font-size: 20px;">''{{ reseña.comentario }}''</p>
+            </div>
+            <br>
+            <p class="card-text" style='margin-left: 115px;'>Autor: {{ reseña.autor }}</p>
+            <p class="card-text" style='margin-left: 115px;'>Fecha: {{ reseña.fecha }}</p>
+            {% if user.is_authenticated %}
+            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+            <a class="btn btn-sm btn-danger bi bi-trash-fill" href="{% url 'eliminar_reseña'  reseña.id  %}"></a>
+            </div>
+            {% endif %}
+          </div>
+        </div>
+      {% empty %}
+        <p class="text-center">Actualmente no hay reseñas.</p>
+      {% endfor %}
+      <div class="text-center">
+        {% if user.is_authenticated %}
+        <a class="btn btn-sm btn-success" href="{% url 'Reseñas' %}">Dejar una Reseña</a>
+        {% endif %}
+      </div>
+    </div>
   </div>
 </div>
 {% endif %}
